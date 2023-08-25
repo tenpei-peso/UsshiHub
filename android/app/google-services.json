@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "663269856431",
+    "project_id": "usshihub",
+    "storage_bucket": "usshihub.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663269856431:android:250cefbcd7a95395cdf05a",
+        "android_client_info": {
+          "package_name": "com.example.ussihub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "663269856431-limrr18ac2i2c1si0j0v075rtklkv2kb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBAUNe9IotnnZJZX3iD7u-dDUcKBoqk_4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "663269856431-limrr18ac2i2c1si0j0v075rtklkv2kb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
