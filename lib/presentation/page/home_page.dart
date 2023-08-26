@@ -2,13 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ussihub/domain/repository/notifier/github_notifier.dart';
 import 'package:ussihub/presentation/page/first_make_note.dart';
+
+import '../../utiles/common/circle_button.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final githubNotifier = ref.watch(githubNotifierProvider.notifier);
 
     return Scaffold(
       body: Stack(children: [
