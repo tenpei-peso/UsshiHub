@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dart_openai/dart_openai.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -16,6 +17,7 @@ class MakeNoteState with _$MakeNoteState {
   factory MakeNoteState({
     @Default('') String fileDataPath,
     @Default('') String detectionText,
+    @Default('') String openAiText,
   }) = _MakeNoteState;
 }
 
@@ -76,7 +78,21 @@ class MakeNoteNotifier extends StateNotifier<MakeNoteState> {
     state = state.copyWith(
       detectionText : text,
     );
+  }
 
+  Future<void> sendMessageOpenAi () async {
+    // メッセージをuserロールでモデル化
+    OpenAIChatCompletionModel chatCompletion = await OpenAI.instance.chat.create(
+      model: "gpt-3.5-turbo",
+      messages: [
+        OpenAIChatCompletionChoiceMessageModel(
+          content: "${state.detectionText}\n 上記の文章をわかりやすく整理したMarkdownで出力 \n # 出力フォーマット",
+          role: OpenAIChatMessageRole.user,
+        ),
+      ],
+    );
+    OpenAIChatCompletionChoiceMessageModel text = chatCompletion.choices.first.message;
+    state = state.copyWith(openAiText: text.content);
   }
 
 }
