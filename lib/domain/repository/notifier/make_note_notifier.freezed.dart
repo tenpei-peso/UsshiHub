@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MakeNoteState {
   String get fileDataPath => throw _privateConstructorUsedError;
+  String get detectionText => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MakeNoteStateCopyWith<MakeNoteState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $MakeNoteStateCopyWith<$Res> {
           MakeNoteState value, $Res Function(MakeNoteState) then) =
       _$MakeNoteStateCopyWithImpl<$Res, MakeNoteState>;
   @useResult
-  $Res call({String fileDataPath});
+  $Res call({String fileDataPath, String detectionText});
 }
 
 /// @nodoc
@@ -46,11 +47,16 @@ class _$MakeNoteStateCopyWithImpl<$Res, $Val extends MakeNoteState>
   @override
   $Res call({
     Object? fileDataPath = null,
+    Object? detectionText = null,
   }) {
     return _then(_value.copyWith(
       fileDataPath: null == fileDataPath
           ? _value.fileDataPath
           : fileDataPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      detectionText: null == detectionText
+          ? _value.detectionText
+          : detectionText // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -64,7 +70,7 @@ abstract class _$$_MakeNoteStateCopyWith<$Res>
       __$$_MakeNoteStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String fileDataPath});
+  $Res call({String fileDataPath, String detectionText});
 }
 
 /// @nodoc
@@ -79,11 +85,16 @@ class __$$_MakeNoteStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? fileDataPath = null,
+    Object? detectionText = null,
   }) {
     return _then(_$_MakeNoteState(
       fileDataPath: null == fileDataPath
           ? _value.fileDataPath
           : fileDataPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      detectionText: null == detectionText
+          ? _value.detectionText
+          : detectionText // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -92,15 +103,18 @@ class __$$_MakeNoteStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_MakeNoteState implements _MakeNoteState {
-  _$_MakeNoteState({this.fileDataPath = ''});
+  _$_MakeNoteState({this.fileDataPath = '', this.detectionText = ''});
 
   @override
   @JsonKey()
   final String fileDataPath;
+  @override
+  @JsonKey()
+  final String detectionText;
 
   @override
   String toString() {
-    return 'MakeNoteState(fileDataPath: $fileDataPath)';
+    return 'MakeNoteState(fileDataPath: $fileDataPath, detectionText: $detectionText)';
   }
 
   @override
@@ -109,11 +123,13 @@ class _$_MakeNoteState implements _MakeNoteState {
         (other.runtimeType == runtimeType &&
             other is _$_MakeNoteState &&
             (identical(other.fileDataPath, fileDataPath) ||
-                other.fileDataPath == fileDataPath));
+                other.fileDataPath == fileDataPath) &&
+            (identical(other.detectionText, detectionText) ||
+                other.detectionText == detectionText));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, fileDataPath);
+  int get hashCode => Object.hash(runtimeType, fileDataPath, detectionText);
 
   @JsonKey(ignore: true)
   @override
@@ -123,10 +139,14 @@ class _$_MakeNoteState implements _MakeNoteState {
 }
 
 abstract class _MakeNoteState implements MakeNoteState {
-  factory _MakeNoteState({final String fileDataPath}) = _$_MakeNoteState;
+  factory _MakeNoteState(
+      {final String fileDataPath,
+      final String detectionText}) = _$_MakeNoteState;
 
   @override
   String get fileDataPath;
+  @override
+  String get detectionText;
   @override
   @JsonKey(ignore: true)
   _$$_MakeNoteStateCopyWith<_$_MakeNoteState> get copyWith =>

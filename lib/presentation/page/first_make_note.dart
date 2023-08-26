@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ussihub/domain/repository/notifier/make_note_notifier.dart';
+import 'package:ussihub/presentation/page/preview_make_note.dart';
 import 'package:ussihub/presentation/page/sign_in_page.dart';
 
 import '../../utiles/common/circle_button.dart';
@@ -56,10 +57,7 @@ class FirstMakeNote extends ConsumerWidget {
                   iconData: Icons.image,
                   color: const Color(0xff1a0b08),
                   onPressed: () async {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => const SignInPage()),
-                      // );
+                      await makeNoteNotifier.getImageFromGarally(context);
                   },
                 ),
               ],
