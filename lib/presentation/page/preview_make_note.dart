@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ussihub/domain/repository/notifier/make_note_notifier.dart';
+import 'package:ussihub/presentation/page/note_detection.dart';
 
 import '../../utiles/common/circle_button.dart';
 
@@ -56,7 +57,7 @@ class PreviewMakeNote extends ConsumerWidget {
                 onPressed: () async {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const PreviewMakeNote()),
+                    MaterialPageRoute(builder: (context) => const NoteDetection()),
                   );
                 },
                 style: ElevatedButton.styleFrom(

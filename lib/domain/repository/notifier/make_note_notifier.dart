@@ -69,6 +69,7 @@ class MakeNoteNotifier extends StateNotifier<MakeNoteState> {
     String text = recognizedText.text;
 
     if(text.isEmpty) {
+      print('からだった');
       return;
     }
 
