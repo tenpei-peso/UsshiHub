@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MakeNoteState {
   String get fileDataPath => throw _privateConstructorUsedError;
   String get detectionText => throw _privateConstructorUsedError;
+  String get openAiText => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MakeNoteStateCopyWith<MakeNoteState> get copyWith =>
@@ -30,7 +31,7 @@ abstract class $MakeNoteStateCopyWith<$Res> {
           MakeNoteState value, $Res Function(MakeNoteState) then) =
       _$MakeNoteStateCopyWithImpl<$Res, MakeNoteState>;
   @useResult
-  $Res call({String fileDataPath, String detectionText});
+  $Res call({String fileDataPath, String detectionText, String openAiText});
 }
 
 /// @nodoc
@@ -48,6 +49,7 @@ class _$MakeNoteStateCopyWithImpl<$Res, $Val extends MakeNoteState>
   $Res call({
     Object? fileDataPath = null,
     Object? detectionText = null,
+    Object? openAiText = null,
   }) {
     return _then(_value.copyWith(
       fileDataPath: null == fileDataPath
@@ -57,6 +59,10 @@ class _$MakeNoteStateCopyWithImpl<$Res, $Val extends MakeNoteState>
       detectionText: null == detectionText
           ? _value.detectionText
           : detectionText // ignore: cast_nullable_to_non_nullable
+              as String,
+      openAiText: null == openAiText
+          ? _value.openAiText
+          : openAiText // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -70,7 +76,7 @@ abstract class _$$_MakeNoteStateCopyWith<$Res>
       __$$_MakeNoteStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String fileDataPath, String detectionText});
+  $Res call({String fileDataPath, String detectionText, String openAiText});
 }
 
 /// @nodoc
@@ -86,6 +92,7 @@ class __$$_MakeNoteStateCopyWithImpl<$Res>
   $Res call({
     Object? fileDataPath = null,
     Object? detectionText = null,
+    Object? openAiText = null,
   }) {
     return _then(_$_MakeNoteState(
       fileDataPath: null == fileDataPath
@@ -96,6 +103,10 @@ class __$$_MakeNoteStateCopyWithImpl<$Res>
           ? _value.detectionText
           : detectionText // ignore: cast_nullable_to_non_nullable
               as String,
+      openAiText: null == openAiText
+          ? _value.openAiText
+          : openAiText // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -103,7 +114,8 @@ class __$$_MakeNoteStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_MakeNoteState implements _MakeNoteState {
-  _$_MakeNoteState({this.fileDataPath = '', this.detectionText = ''});
+  _$_MakeNoteState(
+      {this.fileDataPath = '', this.detectionText = '', this.openAiText = ''});
 
   @override
   @JsonKey()
@@ -111,10 +123,13 @@ class _$_MakeNoteState implements _MakeNoteState {
   @override
   @JsonKey()
   final String detectionText;
+  @override
+  @JsonKey()
+  final String openAiText;
 
   @override
   String toString() {
-    return 'MakeNoteState(fileDataPath: $fileDataPath, detectionText: $detectionText)';
+    return 'MakeNoteState(fileDataPath: $fileDataPath, detectionText: $detectionText, openAiText: $openAiText)';
   }
 
   @override
@@ -125,11 +140,14 @@ class _$_MakeNoteState implements _MakeNoteState {
             (identical(other.fileDataPath, fileDataPath) ||
                 other.fileDataPath == fileDataPath) &&
             (identical(other.detectionText, detectionText) ||
-                other.detectionText == detectionText));
+                other.detectionText == detectionText) &&
+            (identical(other.openAiText, openAiText) ||
+                other.openAiText == openAiText));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, fileDataPath, detectionText);
+  int get hashCode =>
+      Object.hash(runtimeType, fileDataPath, detectionText, openAiText);
 
   @JsonKey(ignore: true)
   @override
@@ -141,12 +159,15 @@ class _$_MakeNoteState implements _MakeNoteState {
 abstract class _MakeNoteState implements MakeNoteState {
   factory _MakeNoteState(
       {final String fileDataPath,
-      final String detectionText}) = _$_MakeNoteState;
+      final String detectionText,
+      final String openAiText}) = _$_MakeNoteState;
 
   @override
   String get fileDataPath;
   @override
   String get detectionText;
+  @override
+  String get openAiText;
   @override
   @JsonKey(ignore: true)
   _$$_MakeNoteStateCopyWith<_$_MakeNoteState> get copyWith =>
