@@ -86,7 +86,7 @@ class MakeNoteNotifier extends StateNotifier<MakeNoteState> {
       model: "gpt-3.5-turbo",
       messages: [
         OpenAIChatCompletionChoiceMessageModel(
-          content: "${state.detectionText}\n 上記の文章をわかりやすく整理したMarkdownで出力 \n # 出力フォーマット",
+          content: "${state.detectionText}\n 上記の文章をわかりやすく整理し、また内容を補完してMarkdownで出力 \n 重要単語は強調する \n 見出しや目次も作成する \n 箇条書きを使う\n# 出力フォーマット",
           role: OpenAIChatMessageRole.user,
         ),
       ],

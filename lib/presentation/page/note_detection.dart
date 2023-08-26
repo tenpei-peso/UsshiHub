@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ussihub/domain/repository/notifier/make_note_notifier.dart';
 import 'package:ussihub/presentation/page/note_detection_page_notifier.dart';
+import 'package:ussihub/presentation/page/show_ai_note.dart';
 
 class NoteDetection extends ConsumerWidget {
   const NoteDetection({Key? key}) : super(key: key);
@@ -32,7 +33,10 @@ class NoteDetection extends ConsumerWidget {
               ),
               ElevatedButton(
                 onPressed: () async {
-                  null;
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ShowAiNote()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.black, // ボタンの背景色
