@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ussihub/domain/repository/notifier/auth_notifier.dart';
+import 'package:ussihub/presentation/page/home_page.dart';
 
 class SignInPage extends ConsumerWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -42,6 +43,10 @@ class SignInPage extends ConsumerWidget {
                 onPressed: () async {
                   //github認証できたらコメントアウト
                   // await authNotifier.signInWithGitHub();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomePage()),
+                  );
                 },
                 style: ButtonStyle(
                   backgroundColor:
