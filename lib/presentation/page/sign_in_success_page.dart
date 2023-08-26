@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ussihub/domain/repository/notifier/auth_notifier.dart';
 import 'package:ussihub/presentation/page/home_page.dart';
-import 'package:ussihub/presentation/page/sign_in_success_page.dart';
 
-class SignInPage extends ConsumerWidget {
-  const SignInPage({Key? key}) : super(key: key);
+class SignInSucessPage extends ConsumerWidget {
+  const SignInSucessPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -21,7 +20,7 @@ class SignInPage extends ConsumerWidget {
               height: 160,
             ),
             const Text(
-              'ようこそ！',
+              '登録が完了しました',
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
@@ -31,7 +30,7 @@ class SignInPage extends ConsumerWidget {
               height: 380,
               width: 380,
               child: Image.asset(
-                'assets/images/Welcome300.PNG',
+                'assets/images/recognition.PNG',
               ),
             ),
             const SizedBox(
@@ -46,14 +45,14 @@ class SignInPage extends ConsumerWidget {
                   // await authNotifier.signInWithGitHub();
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const SignInSucessPage()),
+                    MaterialPageRoute(builder: (context) => const HomePage()),
                   );
                 },
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(const Color(0xFF1a0b08)),
+                  MaterialStateProperty.all<Color>(const Color(0xFF1a0b08)),
                   foregroundColor:
-                      MaterialStateProperty.all<Color>(const Color(0xFFFFF5E0)),
+                  MaterialStateProperty.all<Color>(const Color(0xFFFFF5E0)),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40.0),
@@ -61,7 +60,7 @@ class SignInPage extends ConsumerWidget {
                   ),
                 ),
                 child: const Text(
-                  'GitHubではじめる',
+                  'ホーム画面へ',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
