@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ussihub/presentation/page/first_make_note.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -86,7 +87,10 @@ class HomePage extends ConsumerWidget {
         width: 80,
         child: FloatingActionButton(
           onPressed: () async {
-
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const FirstMakeNote()),
+            );
           },
           tooltip: 'ノート作成',
           child: Image.asset(

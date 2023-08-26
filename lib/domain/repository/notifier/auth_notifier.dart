@@ -32,14 +32,14 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
   }
 
-  // Future<void> signInWithGitHub() async {
-  //   try {
-  //     final UserCredential user = await FirebaseAuth.instance.signInWithProvider(githubProvider);
-  //     state = state.copyWith(user: user);
-  //   } on FirebaseAuthException catch (e) {
-  //     print(e.message);
-  //   }
-  //
-  // }
+  Future<void> signInWithGitHub() async {
+    try {
+      final UserCredential user = await FirebaseAuth.instance.signInWithProvider(githubProvider);
+      state = state.copyWith(user: user);
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+    }
+
+  }
 
 }
