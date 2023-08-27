@@ -2,14 +2,14 @@
 const String query = """
     query(\$userName:String!) {
       user(login: \$userName){
+        avatarUrl
+        name
         contributionsCollection {
           contributionCalendar {
-            totalContributions
             weeks {
               contributionDays {
                 contributionCount
                 date
-                weekday
               }
             }
           }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:ussihub/domain/repository/graphql/provider/app_provider.dart';
 import 'package:ussihub/domain/repository/notifier/auth_notifier.dart';
 import 'package:ussihub/presentation/page/home_page.dart';
 
@@ -47,7 +48,7 @@ class SignInSucessPage extends ConsumerWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const HomePage()),
+                        builder: (context) => AppProvider(child: const HomePage())),
                   );
                 },
                 style: ButtonStyle(

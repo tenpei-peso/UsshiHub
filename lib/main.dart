@@ -27,14 +27,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return AppProvider(
-      child: MaterialApp(
-        title: 'UsshiHub',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const SignInPage(),
+    return MaterialApp(
+      title: 'UsshiHub',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
+      home: const SignInPage(),
     );
 
   }

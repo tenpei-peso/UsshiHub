@@ -6,7 +6,7 @@ final HttpLink httpLink = HttpLink(
 );
 
 final AuthLink authLink = AuthLink(
-  getToken: () async => 'Bearer <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>',
+  getToken: () async => 'Bearer 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',
 );
 
 final Link link = authLink.concat(httpLink);
