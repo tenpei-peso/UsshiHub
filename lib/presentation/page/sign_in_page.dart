@@ -11,8 +11,8 @@ class SignInPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authNotifier = ref.watch(authNotifierProvider.notifier);
-    // final fileDataPath = ref
-    //     .watch(authNotifierProvider.select((state) => ));
+    final currentUser = ref
+        .watch(authNotifierProvider.select((state) => state.currentUser));
 
     return Scaffold(
       backgroundColor: const Color(0xFFFFF5E0),
@@ -62,10 +62,13 @@ class SignInPage extends ConsumerWidget {
                 child: ElevatedButton(
                   onPressed: () async {
                     await authNotifier.signIn();
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => const HomePage()),
-                    // );
+                    if(currentUser == null) {
+                      print('アカウント作成できない');
+                    }
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const HomePage()),
+                    );
                   },
                   style: ButtonStyle(
                     backgroundColor:

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'user.dart';
+part of 'firestore_user.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,33 +14,37 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-User _$UserFromJson(Map<String, dynamic> json) {
-  return _User.fromJson(json);
+FirestoreUser _$FirestoreUserFromJson(Map<String, dynamic> json) {
+  return _FirestoreUser.fromJson(json);
 }
 
 /// @nodoc
-mixin _$User {
+mixin _$FirestoreUser {
+  String get email => throw _privateConstructorUsedError;
   String get githubUserName => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
   String get githubApiKey => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
+  $FirestoreUserCopyWith<FirestoreUser> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res, User>;
+abstract class $FirestoreUserCopyWith<$Res> {
+  factory $FirestoreUserCopyWith(
+          FirestoreUser value, $Res Function(FirestoreUser) then) =
+      _$FirestoreUserCopyWithImpl<$Res, FirestoreUser>;
   @useResult
-  $Res call({String githubUserName, String uid, String githubApiKey});
+  $Res call(
+      {String email, String githubUserName, String uid, String githubApiKey});
 }
 
 /// @nodoc
-class _$UserCopyWithImpl<$Res, $Val extends User>
-    implements $UserCopyWith<$Res> {
-  _$UserCopyWithImpl(this._value, this._then);
+class _$FirestoreUserCopyWithImpl<$Res, $Val extends FirestoreUser>
+    implements $FirestoreUserCopyWith<$Res> {
+  _$FirestoreUserCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -50,11 +54,16 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? email = null,
     Object? githubUserName = null,
     Object? uid = null,
     Object? githubApiKey = null,
   }) {
     return _then(_value.copyWith(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
       githubUserName: null == githubUserName
           ? _value.githubUserName
           : githubUserName // ignore: cast_nullable_to_non_nullable
@@ -72,28 +81,38 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
 }
 
 /// @nodoc
-abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$$_UserCopyWith(_$_User value, $Res Function(_$_User) then) =
-      __$$_UserCopyWithImpl<$Res>;
+abstract class _$$_FirestoreUserCopyWith<$Res>
+    implements $FirestoreUserCopyWith<$Res> {
+  factory _$$_FirestoreUserCopyWith(
+          _$_FirestoreUser value, $Res Function(_$_FirestoreUser) then) =
+      __$$_FirestoreUserCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String githubUserName, String uid, String githubApiKey});
+  $Res call(
+      {String email, String githubUserName, String uid, String githubApiKey});
 }
 
 /// @nodoc
-class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
-    implements _$$_UserCopyWith<$Res> {
-  __$$_UserCopyWithImpl(_$_User _value, $Res Function(_$_User) _then)
+class __$$_FirestoreUserCopyWithImpl<$Res>
+    extends _$FirestoreUserCopyWithImpl<$Res, _$_FirestoreUser>
+    implements _$$_FirestoreUserCopyWith<$Res> {
+  __$$_FirestoreUserCopyWithImpl(
+      _$_FirestoreUser _value, $Res Function(_$_FirestoreUser) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? email = null,
     Object? githubUserName = null,
     Object? uid = null,
     Object? githubApiKey = null,
   }) {
-    return _then(_$_User(
+    return _then(_$_FirestoreUser(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
       githubUserName: null == githubUserName
           ? _value.githubUserName
           : githubUserName // ignore: cast_nullable_to_non_nullable
@@ -112,14 +131,18 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
 
 /// @nodoc
 @JsonSerializable()
-class _$_User implements _User {
-  const _$_User(
-      {required this.githubUserName,
+class _$_FirestoreUser implements _FirestoreUser {
+  const _$_FirestoreUser(
+      {required this.email,
+      required this.githubUserName,
       required this.uid,
       required this.githubApiKey});
 
-  factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
+  factory _$_FirestoreUser.fromJson(Map<String, dynamic> json) =>
+      _$$_FirestoreUserFromJson(json);
 
+  @override
+  final String email;
   @override
   final String githubUserName;
   @override
@@ -129,14 +152,15 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(githubUserName: $githubUserName, uid: $uid, githubApiKey: $githubApiKey)';
+    return 'FirestoreUser(email: $email, githubUserName: $githubUserName, uid: $uid, githubApiKey: $githubApiKey)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_User &&
+            other is _$_FirestoreUser &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.githubUserName, githubUserName) ||
                 other.githubUserName == githubUserName) &&
             (identical(other.uid, uid) || other.uid == uid) &&
@@ -147,30 +171,34 @@ class _$_User implements _User {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, githubUserName, uid, githubApiKey);
+      Object.hash(runtimeType, email, githubUserName, uid, githubApiKey);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserCopyWith<_$_User> get copyWith =>
-      __$$_UserCopyWithImpl<_$_User>(this, _$identity);
+  _$$_FirestoreUserCopyWith<_$_FirestoreUser> get copyWith =>
+      __$$_FirestoreUserCopyWithImpl<_$_FirestoreUser>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserToJson(
+    return _$$_FirestoreUserToJson(
       this,
     );
   }
 }
 
-abstract class _User implements User {
-  const factory _User(
-      {required final String githubUserName,
+abstract class _FirestoreUser implements FirestoreUser {
+  const factory _FirestoreUser(
+      {required final String email,
+      required final String githubUserName,
       required final String uid,
-      required final String githubApiKey}) = _$_User;
+      required final String githubApiKey}) = _$_FirestoreUser;
 
-  factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
+  factory _FirestoreUser.fromJson(Map<String, dynamic> json) =
+      _$_FirestoreUser.fromJson;
 
+  @override
+  String get email;
   @override
   String get githubUserName;
   @override
@@ -179,5 +207,6 @@ abstract class _User implements User {
   String get githubApiKey;
   @override
   @JsonKey(ignore: true)
-  _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
+  _$$_FirestoreUserCopyWith<_$_FirestoreUser> get copyWith =>
+      throw _privateConstructorUsedError;
 }
