@@ -16,7 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AuthState {
-  UserCredential? get user => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get githubUserName => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
+  String get githubApiKey => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -28,7 +31,11 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call({UserCredential? user});
+  $Res call(
+      {String email,
+      String githubUserName,
+      String password,
+      String githubApiKey});
 }
 
 /// @nodoc
@@ -44,13 +51,28 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = freezed,
+    Object? email = null,
+    Object? githubUserName = null,
+    Object? password = null,
+    Object? githubApiKey = null,
   }) {
     return _then(_value.copyWith(
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserCredential?,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      githubUserName: null == githubUserName
+          ? _value.githubUserName
+          : githubUserName // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      githubApiKey: null == githubApiKey
+          ? _value.githubApiKey
+          : githubApiKey // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -62,7 +84,11 @@ abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
       __$$_AuthStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserCredential? user});
+  $Res call(
+      {String email,
+      String githubUserName,
+      String password,
+      String githubApiKey});
 }
 
 /// @nodoc
@@ -76,13 +102,28 @@ class __$$_AuthStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = freezed,
+    Object? email = null,
+    Object? githubUserName = null,
+    Object? password = null,
+    Object? githubApiKey = null,
   }) {
     return _then(_$_AuthState(
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserCredential?,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      githubUserName: null == githubUserName
+          ? _value.githubUserName
+          : githubUserName // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      githubApiKey: null == githubApiKey
+          ? _value.githubApiKey
+          : githubApiKey // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -90,14 +131,28 @@ class __$$_AuthStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AuthState implements _AuthState {
-  _$_AuthState({this.user});
+  _$_AuthState(
+      {this.email = '',
+      this.githubUserName = '',
+      this.password = '',
+      this.githubApiKey = ''});
 
   @override
-  final UserCredential? user;
+  @JsonKey()
+  final String email;
+  @override
+  @JsonKey()
+  final String githubUserName;
+  @override
+  @JsonKey()
+  final String password;
+  @override
+  @JsonKey()
+  final String githubApiKey;
 
   @override
   String toString() {
-    return 'AuthState(user: $user)';
+    return 'AuthState(email: $email, githubUserName: $githubUserName, password: $password, githubApiKey: $githubApiKey)';
   }
 
   @override
@@ -105,11 +160,18 @@ class _$_AuthState implements _AuthState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AuthState &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.githubUserName, githubUserName) ||
+                other.githubUserName == githubUserName) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.githubApiKey, githubApiKey) ||
+                other.githubApiKey == githubApiKey));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode =>
+      Object.hash(runtimeType, email, githubUserName, password, githubApiKey);
 
   @JsonKey(ignore: true)
   @override
@@ -119,10 +181,20 @@ class _$_AuthState implements _AuthState {
 }
 
 abstract class _AuthState implements AuthState {
-  factory _AuthState({final UserCredential? user}) = _$_AuthState;
+  factory _AuthState(
+      {final String email,
+      final String githubUserName,
+      final String password,
+      final String githubApiKey}) = _$_AuthState;
 
   @override
-  UserCredential? get user;
+  String get email;
+  @override
+  String get githubUserName;
+  @override
+  String get password;
+  @override
+  String get githubApiKey;
   @override
   @JsonKey(ignore: true)
   _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>

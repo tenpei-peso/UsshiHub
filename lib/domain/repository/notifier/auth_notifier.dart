@@ -8,7 +8,10 @@ part 'auth_notifier.freezed.dart';
 @freezed
 class AuthState with _$AuthState {
   factory AuthState({
-    UserCredential? user,
+    @Default('') String email,
+    @Default('') String githubUserName,
+    @Default('') String password,
+    @Default('') String githubApiKey,
   }) = _AuthState;
 }
 
@@ -26,20 +29,21 @@ class AuthNotifier extends StateNotifier<AuthState> {
     });
   }
 
-  GithubAuthProvider githubProvider = GithubAuthProvider();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController githubUserNameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController githubApiKeyController = TextEditingController();
+
 
   _init() async {
-
   }
 
-  Future<void> signInWithGitHub() async {
-    try {
-      final UserCredential user = await FirebaseAuth.instance.signInWithProvider(githubProvider);
-      state = state.copyWith(user: user);
-    } on FirebaseAuthException catch (e) {
-      print(e.message);
-    }
-
+  signIn() {
+    print('email${emailController.text}');
+    print('username${githubUserNameController.text}');
+    print('password${passwordController.text}');
+    print('key${githubApiKeyController.text}');
   }
+
 
 }

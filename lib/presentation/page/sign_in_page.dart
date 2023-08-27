@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ussihub/domain/repository/notifier/auth_notifier.dart';
 import 'package:ussihub/presentation/page/home_page.dart';
-import 'package:ussihub/presentation/page/sign_in_success_page.dart';
+
+import '../../domain/repository/notifier/auth_notifier.dart';
 
 class SignInPage extends ConsumerWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -11,66 +11,109 @@ class SignInPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authNotifier = ref.watch(authNotifierProvider.notifier);
+    // final fileDataPath = ref
+    //     .watch(authNotifierProvider.select((state) => ));
 
     return Scaffold(
-      backgroundColor: Color(0xFFFFF5E0),
+      backgroundColor: const Color(0xFFFFF5E0),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 160,
-            ),
-            const Text(
-              'ようこそ！',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
+        child: Padding(
+          padding: const EdgeInsets.all(40.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: MediaQuery.of(context).size.height * 0.1,),
+              const Text(
+                '新規登録',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            SizedBox(
-              height: 380,
-              width: 380,
-              child: Image.asset(
-                'assets/images/Welcome300.PNG',
+              const SizedBox(height: 30,),
+              Padding(
+                padding: const EdgeInsets.only(top: 28.0),
+                child: TextField(controller: authNotifier.emailController),
               ),
-            ),
-            const SizedBox(
-              height: 100,
-            ),
-            SizedBox(
-              height: 64,
-              width: 320,
-              child: ElevatedButton(
-                onPressed: () async {
-                  //github認証できたらコメントアウト
-                  // await authNotifier.signInWithGitHub();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const SignInSucessPage()),
-                  );
-                },
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(const Color(0xFF1a0b08)),
-                  foregroundColor:
-                      MaterialStateProperty.all<Color>(const Color(0xFFFFF5E0)),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40.0),
+              Padding(
+                padding: const EdgeInsets.only(top: 28.0),
+                child: TextField(controller: authNotifier.githubUserNameController),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 28.0),
+                child: TextField(controller: authNotifier.passwordController),
+              ),
+              const Align(
+                  alignment: Alignment.centerRight,
+                  child: Text('8文字以上12文字以下の半角英数字')
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0),
+                child: TextField(controller: authNotifier.githubApiKeyController),
+              ),
+              const Align(
+                  alignment: Alignment.centerRight,
+                  child: Text('取得方法はこちら')
+              ),
+              SizedBox(height: 24,),
+              SizedBox(
+                height: 64,
+                width: 320,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    await authNotifier.signIn();
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => const HomePage()),
+                    // );
+                  },
+                  style: ButtonStyle(
+                    backgroundColor:
+                    MaterialStateProperty.all<Color>(const Color(0xFF1a0b08)),
+                    foregroundColor:
+                    MaterialStateProperty.all<Color>(const Color(0xFFFFF5E0)),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40.0),
+                      ),
+                    ),
+                  ),
+                  child: const Text(
+                    'はじめる',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
-                child: const Text(
-                  'GitHubではじめる',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
               ),
-            )
-          ],
+            ],
+          ),
         ),
+      ),
+    );
+  }
+}
+
+class TextField extends StatelessWidget {
+  const TextField({
+    super.key, required this.controller,
+  });
+  final TextEditingController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      decoration: InputDecoration(
+        filled: true, // 背景色を有効にする
+        fillColor: const Color(0xffe3dfdc), // 背景色をグレーに設定
+        contentPadding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24), // テキストのパディングを設定
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(40.0), // 角丸の半径を設定
+          borderSide: BorderSide.none, // 枠線を非表示にする
+        ),
+        hintText: 'テキストを入力してください', // ヒントテキストを設定
       ),
     );
   }
