@@ -2,18 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ussihub/domain/repository/graphql/model/repository.dart';
 import 'package:ussihub/domain/repository/graphql/repository/github_repository.dart';
-import 'package:ussihub/domain/repository/notifier/github_notifier.dart';
-import 'package:ussihub/presentation/page/first_make_note.dart';
-
-import '../../utiles/common/circle_button.dart';
+import 'package:ussihub/utiles/common/menu_dialog.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final githubNotifier = ref.watch(githubNotifierProvider.notifier);
 
     return FutureBuilder<dynamic>(
       future: fetchRepositories(),
@@ -26,17 +23,17 @@ class HomePage extends ConsumerWidget {
           return Text('でーたnull');
         }
 
-        return Body(data: snapshot.data);
+        return _Body(data: snapshot.data);
       },
     );
   }
 }
 
-class Body extends StatelessWidget {
-  const Body({
+class _Body extends StatelessWidget {
+  const _Body({
     super.key, required this.data,
   });
-  final data;
+  final List<Repository> data;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +53,7 @@ class Body extends StatelessWidget {
             width: 150,
             height: 250,
             child: Image.asset(
-              'assets/images/cawImage.png',
+              'assets/images/caw.png',
               fit: BoxFit.contain,
             )
                 .animate(onPlay: (controller) => controller.repeat())
@@ -81,38 +78,132 @@ class Body extends StatelessWidget {
                     end: 0) // 下に移動
                 .then(delay: 1500.ms)),
       ),
+      Positioned(
+          right: 40, // 左からの位置
+          bottom: 40,
+          child: GestureDetector(
+            onTap: () {
+              MenuDialog.show(context,);
+            },
+            child: SizedBox(
+              width: 50,
+              height: 50,
+              child: Image.asset(
+                'assets/images/menu.png',
+                fit: BoxFit.contain,
+              ),
+            ),
+          )
+      ),
       Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(
-            height: 90,
+            height: 110,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 24),
             child: Wrap(
-              spacing: 8.0, // 横方向のスペース
+              spacing: 12.0, // 横方向のスペース
               runSpacing: 8.0, // 縦方向のスペース
               alignment: WrapAlignment.center,
-              children: List.generate(4, (index) {
-                return SizedBox(
-                  width: 160,
-                  height: 80,
-                  child: Card(
-                    color: Colors.grey,
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Text(
-                        'Card $index',
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                );
-              }),
+              children: [
+                _HomeCard(contributionList: data, title: '今日'),
+                _HomeCard(contributionList: data, title: '先週'),
+              ]
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Container(
+                width: 50,
+                height: 100,
+                decoration: BoxDecoration(
+                  color: const Color(0xffe3dfdc).withOpacity(0.4),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 30,
+                      height: 30,
+                      child: Image.asset(
+                        'assets/images/meat.png',
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                    const Text(
+                      '3',
+                      style: TextStyle(
+                        color: Color(0xfffff5e0),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          )
         ],
       ),
     ]);
+  }
+}
+
+class _HomeCard extends StatelessWidget {
+  const _HomeCard({
+    super.key, required this.contributionList, required this.title
+  });
+  final List<Repository> contributionList;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 160,
+      height: 160,
+      child: Card(
+        color: const Color(0xffe3dfdc).withOpacity(0.4),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(80.0),  // ここで角丸の大きさを設定します。
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.add,
+                  color: Colors.white,
+                  size: 20,
+                ),
+                Text(
+                  title,
+                  style: const TextStyle(
+                    color: Color(0xfffff5e0),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            Text(
+              contributionList.first.contributionCount.toString(),
+              style: const TextStyle(
+                color: Color(0xfffff5e0),
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
