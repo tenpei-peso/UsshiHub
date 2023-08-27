@@ -33,15 +33,15 @@ class SignInPage extends ConsumerWidget {
               const SizedBox(height: 30,),
               Padding(
                 padding: const EdgeInsets.only(top: 28.0),
-                child: TextField(controller: authNotifier.emailController),
+                child: TextField(controller: authNotifier.emailController, hintText: 'emailを入力してください',),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 28.0),
-                child: TextField(controller: authNotifier.githubUserNameController),
+                child: TextField(controller: authNotifier.githubUserNameController, hintText: 'githubのusernameを入力してください',),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 28.0),
-                child: TextField(controller: authNotifier.passwordController),
+                child: TextField(controller: authNotifier.passwordController, hintText: 'passwordを入力してください',),
               ),
               const Align(
                   alignment: Alignment.centerRight,
@@ -49,7 +49,7 @@ class SignInPage extends ConsumerWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
-                child: TextField(controller: authNotifier.githubApiKeyController),
+                child: TextField(controller: authNotifier.githubApiKeyController, hintText: 'githubのAPIキーを入力してください',),
               ),
               const Align(
                   alignment: Alignment.centerRight,
@@ -64,6 +64,7 @@ class SignInPage extends ConsumerWidget {
                     await authNotifier.signIn();
                     if(currentUser == null) {
                       print('アカウント作成できない');
+                      return;
                     }
                     Navigator.push(
                       context,
@@ -100,9 +101,12 @@ class SignInPage extends ConsumerWidget {
 
 class TextField extends StatelessWidget {
   const TextField({
-    super.key, required this.controller,
+    super.key,
+    required this.controller,
+    required this.hintText,
   });
   final TextEditingController controller;
+  final String hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +120,7 @@ class TextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(40.0), // 角丸の半径を設定
           borderSide: BorderSide.none, // 枠線を非表示にする
         ),
-        hintText: 'テキストを入力してください', // ヒントテキストを設定
+        hintText: hintText, // ヒントテキストを設定
       ),
     );
   }
