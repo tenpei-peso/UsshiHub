@@ -4,8 +4,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ussihub/domain/repository/graphql/model/repository.dart';
 import 'package:ussihub/domain/repository/graphql/repository/github_repository.dart';
-import 'package:ussihub/domain/repository/notifier/github_notifier.dart';
-import 'package:ussihub/presentation/page/first_make_note.dart';
 import 'package:ussihub/utiles/common/menu_dialog.dart';
 
 class HomePage extends ConsumerWidget {
@@ -13,7 +11,6 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final githubNotifier = ref.watch(githubNotifierProvider.notifier);
 
     return FutureBuilder<dynamic>(
       future: fetchRepositories(),
@@ -56,7 +53,7 @@ class _Body extends StatelessWidget {
             width: 150,
             height: 250,
             child: Image.asset(
-              'assets/images/cawImage.png',
+              'assets/images/caw.png',
               fit: BoxFit.contain,
             )
                 .animate(onPlay: (controller) => controller.repeat())
@@ -116,6 +113,41 @@ class _Body extends StatelessWidget {
               ]
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Container(
+                width: 50,
+                height: 100,
+                decoration: BoxDecoration(
+                  color: const Color(0xffe3dfdc).withOpacity(0.4),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 30,
+                      height: 30,
+                      child: Image.asset(
+                        'assets/images/meat.png',
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                    const Text(
+                      '3',
+                      style: TextStyle(
+                        color: Color(0xfffff5e0),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          )
         ],
       ),
     ]);
@@ -135,7 +167,7 @@ class _HomeCard extends StatelessWidget {
       width: 160,
       height: 160,
       child: Card(
-        color: const Color(0xFFFFF5E0).withOpacity(0.6),
+        color: const Color(0xffe3dfdc).withOpacity(0.4),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(80.0),  // ここで角丸の大きさを設定します。
         ),
@@ -154,7 +186,7 @@ class _HomeCard extends StatelessWidget {
                 Text(
                   title,
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: Color(0xfffff5e0),
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
@@ -164,7 +196,7 @@ class _HomeCard extends StatelessWidget {
             Text(
               contributionList.first.contributionCount.toString(),
               style: const TextStyle(
-                color: Colors.white,
+                color: Color(0xfffff5e0),
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),
