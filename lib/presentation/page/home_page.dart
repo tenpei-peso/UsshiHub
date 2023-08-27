@@ -6,6 +6,7 @@ import 'package:ussihub/domain/repository/graphql/model/repository.dart';
 import 'package:ussihub/domain/repository/graphql/repository/github_repository.dart';
 import 'package:ussihub/domain/repository/notifier/github_notifier.dart';
 import 'package:ussihub/presentation/page/first_make_note.dart';
+import 'package:ussihub/utiles/common/menu_dialog.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -85,7 +86,7 @@ class _Body extends StatelessWidget {
           bottom: 40,
           child: GestureDetector(
             onTap: () {
-
+              MenuDialog.show(context,);
             },
             child: SizedBox(
               width: 50,
