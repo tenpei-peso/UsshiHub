@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:ussihub/domain/repository/notifier/auth_notifier.dart';
 import 'package:ussihub/presentation/page/home_page.dart';
 
@@ -45,14 +46,15 @@ class SignInSucessPage extends ConsumerWidget {
                   // await authNotifier.signInWithGitHub();
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
+                    MaterialPageRoute(
+                        builder: (context) => const HomePage()),
                   );
                 },
                 style: ButtonStyle(
                   backgroundColor:
-                  MaterialStateProperty.all<Color>(const Color(0xFF1a0b08)),
+                      MaterialStateProperty.all<Color>(const Color(0xFF1a0b08)),
                   foregroundColor:
-                  MaterialStateProperty.all<Color>(const Color(0xFFFFF5E0)),
+                      MaterialStateProperty.all<Color>(const Color(0xFFFFF5E0)),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40.0),
