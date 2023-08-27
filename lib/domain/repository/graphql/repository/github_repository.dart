@@ -10,7 +10,7 @@ Future<List<Repository>?> fetchRepositories() async {
     },)
   );
   final List<dynamic>? weeks = response.data?['user']?['contributionsCollection']?['contributionCalendar']?['weeks'];
-  final Map<String, dynamic> lastWeek = weeks?[weeks.length -2];
+  final Map<String, dynamic> lastWeek = weeks?[weeks.length -1];
   final List<dynamic>? result = lastWeek['contributionDays'];
   final List<Repository> repositoryList = result!.map((dynamic item) => Repository.fromJson(item)).toList();
   return repositoryList;
