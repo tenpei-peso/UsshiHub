@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ussihub/domain/repository/notifier/make_note_notifier.dart';
-import 'package:ussihub/presentation/page/preview_make_note.dart';
-import 'package:ussihub/presentation/page/sign_in_page.dart';
 
 import '../../utiles/common/circle_button.dart';
 

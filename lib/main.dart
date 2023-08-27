@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:ussihub/presentation/page/sign_in_page.dart';
+import 'package:ussihub/presentation/page/rets_start_page.dart';
 import 'domain/repository/graphql/provider/app_provider.dart';
 import 'firebase_options.dart';
 import 'package:dart_openai/dart_openai.dart';
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SignInPage(),
+      home: const RetsStartPage(),
     );
 
   }
