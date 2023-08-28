@@ -39,6 +39,7 @@ class FirstMakeNote extends ConsumerWidget {
         children: <Widget>[
           Column(
             children: [
+              const SizedBox(height: 20,),
               const Padding(
                 padding: EdgeInsets.all(20),
                 child: Text(
@@ -50,12 +51,13 @@ class FirstMakeNote extends ConsumerWidget {
                       decoration: TextDecoration.none),
                 ),
               ),
+              const SizedBox(height: 20,),
               Container(
-                padding: EdgeInsets.only(bottom: 50),
-                width: 500,
-                height: 500,
+                padding: EdgeInsets.only(bottom: 30),
+                width: 300,
+                height: 300,
                 child: Image.asset(
-                  'assets/images/noteCow.png',
+                  'assets/images/noteCow500.png',
                   fit: BoxFit.contain,
                 ),
               ),
