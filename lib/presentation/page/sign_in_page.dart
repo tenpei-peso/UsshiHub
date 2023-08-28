@@ -63,10 +63,10 @@ class SignInPage extends ConsumerWidget {
                 child: ElevatedButton(
                   onPressed: () async {
                     await authNotifier.signIn();
-                    if(currentUser == null) {
-                      ErrorDialog.show(context);
-                      return;
-                    }
+                    // if(currentUser == null) {
+                    //   ErrorDialog.show(context);
+                    //   return;
+                    // }
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => const HomePage()),
