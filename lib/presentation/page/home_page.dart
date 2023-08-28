@@ -73,7 +73,7 @@ class _Body extends ConsumerWidget {
             width: 150,
             height: 250,
             child: Image.asset(
-              imagePath,
+              imagePath == '' ? 'assets/images/caw.png' : imagePath,
               fit: BoxFit.contain,
             )
                 .animate(onPlay: (controller) => controller.repeat())

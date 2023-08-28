@@ -72,30 +72,32 @@ class _CowshedPageState extends State<CowshedPage> {
                 childAspectRatio: 1.0,
               ),
               children: List.generate(4, (index) {
-                return Column(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        _toggleSelection(index);
-                      },
-                      child: Container(
-                        width: 160,
-                        height: 140,
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          image: DecorationImage(
-                            image: AssetImage('assets/images/cawImage.png'),
-                            fit: BoxFit.cover,
-                            colorFilter: _selectedButtonIndex == index
-                                ? ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.darken)
-                                : null,
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          _toggleSelection(index);
+                        },
+                        child: Container(
+                          width: 160,
+                          height: 140,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            image: DecorationImage(
+                              image: AssetImage('assets/images/caw.png'),
+                              fit: BoxFit.cover,
+                              colorFilter: _selectedButtonIndex == index
+                                  ? ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.darken)
+                                  : null,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 10),
-                    Text('Image button ${index + 1} Text'),
-                  ],
+                      SizedBox(height: 10),
+                      Text('Image button ${index + 1} Text'),
+                    ],
+                  ),
                 );
               }),
             ),
