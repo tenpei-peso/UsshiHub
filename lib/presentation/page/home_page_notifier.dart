@@ -12,8 +12,8 @@ class HomePageState with _$HomePageState {
   }) = _HomePageState;
 }
 
-final homePageProvider =
-StateNotifierProvider<HomePageNotifier, HomePageState>((ref) {
+final homePageNotifierProvider =
+StateNotifierProvider.autoDispose<HomePageNotifier, HomePageState>((ref) {
   return HomePageNotifier(ref);
 });
 
@@ -29,4 +29,9 @@ class HomePageNotifier extends StateNotifier<HomePageState> {
   _init() async {
 
   }
+
+  void changeErrorFlug(bool error) {
+    state = state.copyWith(apiError: error);
+  }
+
 }
