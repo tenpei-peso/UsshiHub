@@ -22,7 +22,7 @@ class MakeNoteState with _$MakeNoteState {
 }
 
 final makeNoteNotifierProvider =
-StateNotifierProvider<MakeNoteNotifier, MakeNoteState>((ref) {
+StateNotifierProvider.autoDispose<MakeNoteNotifier, MakeNoteState>((ref) {
   return MakeNoteNotifier(ref);
 });
 

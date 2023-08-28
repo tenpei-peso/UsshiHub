@@ -4,39 +4,57 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ussihub/domain/repository/graphql/model/repository.dart';
 import 'package:ussihub/domain/repository/graphql/repository/github_repository.dart';
+import 'package:ussihub/domain/repository/notifier/auth_notifier.dart';
+import 'package:ussihub/presentation/page/home_page_notifier.dart';
 import 'package:ussihub/utiles/common/menu_dialog.dart';
+
+import '../../utiles/common/error_dialog.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // final authNotifier = ref.watch(authNotifierProvider.notifier);
+    final homePageNotifier = ref.watch(homePageNotifierProvider.notifier);
 
     return FutureBuilder<dynamic>(
       future: fetchRepositories(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
+          homePageNotifier.changeErrorFlug(true);
         }
 
-        if(snapshot.data == null) {
-          return Text('でーたnull');
+        if (snapshot.data == null) {
+          homePageNotifier.changeErrorFlug(true);
         }
 
-        return _Body(data: snapshot.data);
+        return _Body(data: snapshot.data ?? []);
       },
     );
   }
 }
 
-class _Body extends StatelessWidget {
+class _Body extends ConsumerWidget {
   const _Body({
-    super.key, required this.data,
+    super.key,
+    required this.data,
   });
+
   final List<Repository> data;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final apiError =
+        ref.watch(homePageNotifierProvider.select((state) => state.apiError));
+    final email = ref.watch(
+            authNotifierProvider.select((state) => state.currentUser?.email)) ??
+        "";
+
+    // if (apiError) {
+    //   ErrorDialog.show(context);
+    // }
+
     return Stack(children: [
       Container(
         decoration: const BoxDecoration(
@@ -58,14 +76,10 @@ class _Body extends StatelessWidget {
             )
                 .animate(onPlay: (controller) => controller.repeat())
                 .moveX(
-                    duration: const Duration(seconds: 5),
-                    begin: -150,
-                    end: 50)
+                    duration: const Duration(seconds: 5), begin: -150, end: 50)
                 .then(delay: 1500.ms)
                 .moveX(
-                    duration: const Duration(seconds: 5),
-                    begin: 100,
-                    end: -100)
+                    duration: const Duration(seconds: 5), begin: 100, end: -100)
                 .then(delay: 1500.ms)
                 .moveY(
                     duration: const Duration(seconds: 5),
@@ -83,7 +97,9 @@ class _Body extends StatelessWidget {
           bottom: 40,
           child: GestureDetector(
             onTap: () {
-              MenuDialog.show(context,);
+              MenuDialog.show(
+                context,
+              );
             },
             child: SizedBox(
               width: 50,
@@ -93,25 +109,37 @@ class _Body extends StatelessWidget {
                 fit: BoxFit.contain,
               ),
             ),
-          )
-      ),
+          )),
       Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(
-            height: 110,
+            height: 100,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                email,
+                style: const TextStyle(
+                    color: Color(0xfffff5e0),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.none),
+              ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 24),
             child: Wrap(
-              spacing: 12.0, // 横方向のスペース
-              runSpacing: 8.0, // 縦方向のスペース
-              alignment: WrapAlignment.center,
-              children: [
-                _HomeCard(contributionList: data, title: '今日'),
-                _HomeCard(contributionList: data, title: '先週'),
-              ]
-            ),
+                spacing: 12.0, // 横方向のスペース
+                runSpacing: 8.0, // 縦方向のスペース
+                alignment: WrapAlignment.center,
+                children: [
+                  _HomeCard(contributionList: data, title: '今日'),
+                  _HomeCard(contributionList: data, title: '今週'),
+                ]),
           ),
           Padding(
             padding: const EdgeInsets.all(16),
@@ -138,6 +166,7 @@ class _Body extends StatelessWidget {
                     const Text(
                       '3',
                       style: TextStyle(
+                        decoration: TextDecoration.none,
                         color: Color(0xfffff5e0),
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -155,9 +184,9 @@ class _Body extends StatelessWidget {
 }
 
 class _HomeCard extends StatelessWidget {
-  const _HomeCard({
-    super.key, required this.contributionList, required this.title
-  });
+  const _HomeCard(
+      {super.key, required this.contributionList, required this.title});
+
   final List<Repository> contributionList;
   final String title;
 
@@ -169,7 +198,7 @@ class _HomeCard extends StatelessWidget {
       child: Card(
         color: const Color(0xffe3dfdc).withOpacity(0.4),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(80.0),  // ここで角丸の大きさを設定します。
+          borderRadius: BorderRadius.circular(80.0), // ここで角丸の大きさを設定します。
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -194,7 +223,9 @@ class _HomeCard extends StatelessWidget {
               ],
             ),
             Text(
-              contributionList.first.contributionCount.toString(),
+              title == '今日'
+                  ? contributionList.first.contributionCount.toString()
+                  : contributionList.length.toString(),
               style: const TextStyle(
                 color: Color(0xfffff5e0),
                 fontSize: 30,
