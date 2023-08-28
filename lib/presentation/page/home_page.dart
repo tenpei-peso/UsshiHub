@@ -11,11 +11,13 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // final authNotifier = ref.watch(authNotifierProvider.notifier);
 
     return FutureBuilder<dynamic>(
       future: fetchRepositories(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (snapshot.hasError) {
+
           return Center(child: Text('Error: ${snapshot.error}'));
         }
 
@@ -31,7 +33,7 @@ class HomePage extends ConsumerWidget {
 
 class _Body extends StatelessWidget {
   const _Body({
-    super.key, required this.data,
+    super.key, this.data = const [],
   });
   final List<Repository> data;
 
