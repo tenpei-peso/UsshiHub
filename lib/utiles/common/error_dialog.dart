@@ -50,7 +50,7 @@ class ErrorDialog extends StatelessWidget {
                       width: 250,
                       height: 250,
                       child: Image.asset(
-                        'assets/images/caw.png',
+                        'assets/images/error.png',
                         fit: BoxFit.contain,
                       ),
                     ),

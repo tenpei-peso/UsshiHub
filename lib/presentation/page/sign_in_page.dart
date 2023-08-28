@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ussihub/presentation/page/home_page.dart';
 
 import '../../domain/repository/notifier/auth_notifier.dart';
+import '../../utiles/common/error_dialog.dart';
 
 class SignInPage extends ConsumerWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -63,7 +64,7 @@ class SignInPage extends ConsumerWidget {
                   onPressed: () async {
                     await authNotifier.signIn();
                     if(currentUser == null) {
-                      print('アカウント作成できない');
+                      ErrorDialog.show(context);
                       return;
                     }
                     Navigator.push(

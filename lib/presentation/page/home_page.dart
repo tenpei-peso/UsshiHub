@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ussihub/domain/repository/graphql/model/repository.dart';
 import 'package:ussihub/domain/repository/graphql/repository/github_repository.dart';
+import 'package:ussihub/domain/repository/notifier/auth_notifier.dart';
 import 'package:ussihub/presentation/page/home_page_notifier.dart';
 import 'package:ussihub/utiles/common/menu_dialog.dart';
 
@@ -28,7 +29,7 @@ class HomePage extends ConsumerWidget {
           homePageNotifier.changeErrorFlug(true);
         }
 
-        return _Body(data: snapshot.data);
+        return _Body(data: snapshot.data ?? []);
       },
     );
   }
@@ -37,7 +38,7 @@ class HomePage extends ConsumerWidget {
 class _Body extends ConsumerWidget {
   const _Body({
     super.key,
-    this.data = const [],
+    required this.data,
   });
 
   final List<Repository> data;
@@ -46,10 +47,13 @@ class _Body extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final apiError =
         ref.watch(homePageNotifierProvider.select((state) => state.apiError));
+    final email = ref.watch(
+            authNotifierProvider.select((state) => state.currentUser?.email)) ??
+        "";
 
-    if (apiError) {
-      const ErrorDialog();
-    }
+    // if (apiError) {
+    //   ErrorDialog.show(context);
+    // }
 
     return Stack(children: [
       Container(
@@ -110,7 +114,21 @@ class _Body extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(
-            height: 110,
+            height: 100,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                email,
+                style: const TextStyle(
+                    color: Color(0xfffff5e0),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.none),
+              ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 24),
@@ -148,6 +166,7 @@ class _Body extends ConsumerWidget {
                     const Text(
                       '3',
                       style: TextStyle(
+                        decoration: TextDecoration.none,
                         color: Color(0xfffff5e0),
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
