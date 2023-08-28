@@ -11,8 +11,8 @@ class FirstMakeNote extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final makeNoteNotifier = ref.watch(makeNoteNotifierProvider.notifier);
-    final fileDataPath =
-        ref.watch(makeNoteNotifierProvider.select((state) => state.fileDataPath));
+    final fileDataPath = ref
+        .watch(makeNoteNotifierProvider.select((state) => state.fileDataPath));
 
     return Scaffold(
       backgroundColor: const Color(0xFFFFF5E0),
@@ -37,6 +37,30 @@ class FirstMakeNote extends ConsumerWidget {
       ),
       body: Stack(
         children: <Widget>[
+          Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(20),
+                child: Text(
+                  '画像をアップロードすると、AIが画像を解析し自動でノートを作成します\nノート保存機能はお肉を消費してアンロックしてください',
+                  style: TextStyle(
+                      color: Color(0xff1a0b08),
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.none),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(bottom: 50),
+                width: 500,
+                height: 500,
+                child: Image.asset(
+                  'assets/images/noteCow.png',
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ],
+          ),
           Positioned(
             bottom: 80,
             left: 0,
@@ -55,12 +79,13 @@ class FirstMakeNote extends ConsumerWidget {
                   iconData: Icons.image,
                   color: const Color(0xff1a0b08),
                   onPressed: () async {
-                      await makeNoteNotifier.getImageFromGarally(context);
+                    await makeNoteNotifier.getImageFromGarally(context);
                   },
                 ),
               ],
             ),
           ),
+
           ///TODO 取得してきたlist表示
         ],
       ),
