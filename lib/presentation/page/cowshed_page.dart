@@ -126,7 +126,7 @@ class _CowshedPageState extends State<CowshedPage> {
         ],
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 20.0),
+        padding: const EdgeInsets.only(bottom: 15.0),
         child: SizedBox(
           height: 64,
           width: 320,

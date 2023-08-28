@@ -38,7 +38,6 @@ class MakeNoteNotifier extends StateNotifier<MakeNoteState> {
   final imagePicker = ImagePicker();
 
   _init() async {
-
   }
 
   // ギャラリーから写真を取得するメソッド

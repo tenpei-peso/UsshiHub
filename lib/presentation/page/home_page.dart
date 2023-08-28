@@ -17,21 +17,21 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // final authNotifier = ref.watch(authNotifierProvider.notifier);
     final homePageNotifier = ref.watch(homePageNotifierProvider.notifier);
-
-    return FutureBuilder<dynamic>(
-      future: fetchRepositories(),
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        if (snapshot.hasError) {
-          homePageNotifier.changeErrorFlug(true);
-        }
-
-        if (snapshot.data == null) {
-          homePageNotifier.changeErrorFlug(true);
-        }
-
-        return _Body(data: snapshot.data ?? []);
-      },
-    );
+      return const _Body(data: []);
+    // return FutureBuilder<dynamic>(
+    //   future: fetchRepositories(),
+    //   builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+    //     if (snapshot.hasError) {
+    //       homePageNotifier.changeErrorFlug(true);
+    //     }
+    //
+    //     if (snapshot.data == null) {
+    //       homePageNotifier.changeErrorFlug(true);
+    //     }
+    //
+    //     return _Body(data: snapshot.data ?? []);
+    //   },
+    // );
   }
 }
 
@@ -50,6 +50,8 @@ class _Body extends ConsumerWidget {
     final email = ref.watch(
             authNotifierProvider.select((state) => state.currentUser?.email)) ??
         "";
+    final imagePath = ref
+        .watch(homePageNotifierProvider.select((state) => state.imagePath));
 
     // if (apiError) {
     //   ErrorDialog.show(context);
@@ -71,7 +73,7 @@ class _Body extends ConsumerWidget {
             width: 150,
             height: 250,
             child: Image.asset(
-              'assets/images/caw.png',
+              imagePath,
               fit: BoxFit.contain,
             )
                 .animate(onPlay: (controller) => controller.repeat())
@@ -183,7 +185,7 @@ class _Body extends ConsumerWidget {
   }
 }
 
-class _HomeCard extends StatelessWidget {
+class _HomeCard extends ConsumerWidget {
   const _HomeCard(
       {super.key, required this.contributionList, required this.title});
 
@@ -191,7 +193,11 @@ class _HomeCard extends StatelessWidget {
   final String title;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final homePageNotifier = ref.watch(homePageNotifierProvider.notifier);
+    final contribution = ref
+        .watch(homePageNotifierProvider.select((state) => state.contribution));
+
     return SizedBox(
       width: 160,
       height: 160,
@@ -224,8 +230,8 @@ class _HomeCard extends StatelessWidget {
             ),
             Text(
               title == '今日'
-                  ? contributionList.first.contributionCount.toString()
-                  : contributionList.length.toString(),
+                  ? contribution.toString()
+                  : (contribution + 20).toString(),
               style: const TextStyle(
                 color: Color(0xfffff5e0),
                 fontSize: 30,

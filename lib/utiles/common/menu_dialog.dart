@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ussihub/presentation/page/cowshed_page.dart';
 import 'package:ussihub/presentation/page/first_make_note.dart';
+import 'package:ussihub/presentation/page/skinshop_page.dart';
 
 class MenuDialog extends StatelessWidget {
   const MenuDialog({
@@ -58,18 +60,30 @@ class MenuDialog extends StatelessWidget {
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.bold),
                               ),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => CowshedPage()),
+                                );
+                              },
                             ),
                           ),
                           const Divider(height: 1,),
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8),
                             child: ListTile(
-                              leading: Image.asset('assets/images/houseBlack.png'),
+                              leading: Image.asset('assets/images/shop.png', width: 45,height: 45,),
                               title: const Text(
                                 'スキンショップ',
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.bold),
                               ),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => SkinshopPage()),
+                                );
+                              },
                             ),
                           ),
                           const Divider(height: 1,),
