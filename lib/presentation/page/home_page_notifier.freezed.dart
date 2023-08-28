@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$HomePageState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get apiError => throw _privateConstructorUsedError;
+  int get contribution => throw _privateConstructorUsedError;
+  String get imagePath => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomePageStateCopyWith<HomePageState> get copyWith =>
@@ -30,7 +32,8 @@ abstract class $HomePageStateCopyWith<$Res> {
           HomePageState value, $Res Function(HomePageState) then) =
       _$HomePageStateCopyWithImpl<$Res, HomePageState>;
   @useResult
-  $Res call({bool isLoading, bool apiError});
+  $Res call(
+      {bool isLoading, bool apiError, int contribution, String imagePath});
 }
 
 /// @nodoc
@@ -48,6 +51,8 @@ class _$HomePageStateCopyWithImpl<$Res, $Val extends HomePageState>
   $Res call({
     Object? isLoading = null,
     Object? apiError = null,
+    Object? contribution = null,
+    Object? imagePath = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -58,6 +63,14 @@ class _$HomePageStateCopyWithImpl<$Res, $Val extends HomePageState>
           ? _value.apiError
           : apiError // ignore: cast_nullable_to_non_nullable
               as bool,
+      contribution: null == contribution
+          ? _value.contribution
+          : contribution // ignore: cast_nullable_to_non_nullable
+              as int,
+      imagePath: null == imagePath
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -70,7 +83,8 @@ abstract class _$$_HomePageStateCopyWith<$Res>
       __$$_HomePageStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, bool apiError});
+  $Res call(
+      {bool isLoading, bool apiError, int contribution, String imagePath});
 }
 
 /// @nodoc
@@ -86,6 +100,8 @@ class __$$_HomePageStateCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? apiError = null,
+    Object? contribution = null,
+    Object? imagePath = null,
   }) {
     return _then(_$_HomePageState(
       isLoading: null == isLoading
@@ -96,6 +112,14 @@ class __$$_HomePageStateCopyWithImpl<$Res>
           ? _value.apiError
           : apiError // ignore: cast_nullable_to_non_nullable
               as bool,
+      contribution: null == contribution
+          ? _value.contribution
+          : contribution // ignore: cast_nullable_to_non_nullable
+              as int,
+      imagePath: null == imagePath
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -103,7 +127,11 @@ class __$$_HomePageStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_HomePageState implements _HomePageState {
-  _$_HomePageState({this.isLoading = false, this.apiError = false});
+  _$_HomePageState(
+      {this.isLoading = false,
+      this.apiError = false,
+      this.contribution = 0,
+      this.imagePath = ''});
 
   @override
   @JsonKey()
@@ -111,10 +139,16 @@ class _$_HomePageState implements _HomePageState {
   @override
   @JsonKey()
   final bool apiError;
+  @override
+  @JsonKey()
+  final int contribution;
+  @override
+  @JsonKey()
+  final String imagePath;
 
   @override
   String toString() {
-    return 'HomePageState(isLoading: $isLoading, apiError: $apiError)';
+    return 'HomePageState(isLoading: $isLoading, apiError: $apiError, contribution: $contribution, imagePath: $imagePath)';
   }
 
   @override
@@ -125,11 +159,16 @@ class _$_HomePageState implements _HomePageState {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.apiError, apiError) ||
-                other.apiError == apiError));
+                other.apiError == apiError) &&
+            (identical(other.contribution, contribution) ||
+                other.contribution == contribution) &&
+            (identical(other.imagePath, imagePath) ||
+                other.imagePath == imagePath));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, apiError);
+  int get hashCode =>
+      Object.hash(runtimeType, isLoading, apiError, contribution, imagePath);
 
   @JsonKey(ignore: true)
   @override
@@ -139,13 +178,20 @@ class _$_HomePageState implements _HomePageState {
 }
 
 abstract class _HomePageState implements HomePageState {
-  factory _HomePageState({final bool isLoading, final bool apiError}) =
-      _$_HomePageState;
+  factory _HomePageState(
+      {final bool isLoading,
+      final bool apiError,
+      final int contribution,
+      final String imagePath}) = _$_HomePageState;
 
   @override
   bool get isLoading;
   @override
   bool get apiError;
+  @override
+  int get contribution;
+  @override
+  String get imagePath;
   @override
   @JsonKey(ignore: true)
   _$$_HomePageStateCopyWith<_$_HomePageState> get copyWith =>
